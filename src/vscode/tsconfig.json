@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"composite": true,
+		"module": "commonjs",
+		"target": "ESNext",
+		"lib": ["ES2023"],
+		"outDir": "../../out/vscode",
+		"sourceMap": true,
+		"strict": true,
+		"rootDir": "."
+	},
+	"exclude": ["node_modules", ".vscode-test"]
+}

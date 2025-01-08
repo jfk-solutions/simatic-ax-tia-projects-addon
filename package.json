@@ -1,0 +1,108 @@
+{
+	"name": "simatic-ax-tia-projects-addon",
+	"displayName": "Addon for Simatic AX to browse TIA projects",
+	"description": "Addon for Simatic AX to browse TIA projects",
+	"version": "0.0.4",
+	"publisher": "jfk-solutions",
+	"license": "MIT",
+	"pricing": "Trial",
+	"engines": {
+		"vscode": "^1.77.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"main": "./out/vscode/extension.js",
+	"browser": "./out/vscodeWeb/extension.js",
+	"contributes": {
+		"configuration": {
+			"id": "simaticAxTiaAddonMainCategory",
+			"title": "Simatic AX TIA Addon",
+			"order": 1,
+			"properties": {
+				"simatic-ax-tia-projects-addon.tiaPortalProjectServerUri": {
+					"title": "aaa",
+					"type": "string",
+					"default": "http://127.0.0.1:5400"
+				}
+			}
+		},
+		"views": {
+			"explorer": [
+				{
+					"id": "tiaProjectTreeView",
+					"name": "TIA Project View"
+				}
+			]
+		},
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "simatic-ax-tia-projects-addon.openTiaProject",
+					"when": "resourceFilename =~ /^.*\\.a(p|l)15_1$|^.*\\.a(p|l)\\d\\d$|^.*\\.za(p|l)15_1$|^.*\\.za(p|l)\\d\\d$|^.*\\.zip$/",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "simatic-ax-tia-projects-addon.closeProject",
+					"when": "view == tiaProjectTreeView && viewItem == project"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "simatic-ax-tia-projects-addon.openTiaProject",
+				"title": "Open in TIA Project View"
+			},
+			{
+				"command": "simatic-ax-tia-projects-addon.closeProject",
+				"title": "Close Project"
+			}
+		],
+		"customEditors": [
+			{
+				"viewType": "simatic-ax-tia-projects-addon.tiaEditor",
+				"displayName": "TIA Portal Project Editor",
+				"priority": "default",
+				"selector": [
+					{
+						"filenamePattern": "*.{zap[0-9][0-9],zap15_1,ap[0-9][0-9],ap15_1,al[0-9][0-9],al15_1}"
+					}
+				]
+			},
+			{
+				"viewType": "simatic-ax-tia-projects-addon.tiaEditorZip",
+				"displayName": "TIA Portal Project Editor",
+				"priority": "selector",
+				"selector": [
+					{
+						"filenamePattern": "*.zip"
+					}
+				]
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile && npm run esbuild",
+		"compile": "tsc -p ./src/vscode",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -w -p ./src/vscode",
+		"watchWebview": "tsc -w -p ./src/webview",
+		"vsce": "vsce",
+		"package": "vsce package",
+		"publish": "vsce publish",
+		"esbuild": "esbuild ./out/vscode/extension.js --bundle --outfile=out/vscodeWeb/extension.js --external:vscode --format=cjs --platform=node"
+	},
+	"devDependencies": {
+		"@types/node": "^22.10.4",
+		"@types/vscode": "^1.77.0",
+		"@types/vscode-webview": "^1.57.5",
+		"@typescript-eslint/eslint-plugin": "^8.19.0",
+		"@typescript-eslint/parser": "^8.19.0",
+		"@vscode/vsce": "^3.2.1",
+		"esbuild": "^0.24.2",
+		"eslint": "^9.17.0",
+		"typescript": "^5.7.2"
+	}
+}
