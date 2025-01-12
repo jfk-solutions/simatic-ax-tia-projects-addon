@@ -208,7 +208,7 @@ class FolderTreeItem extends ChildrenTreeItem {
 
 	constructor(folder: Folder, projectTreeItem: ProjectTreeItem, parent: ChildrenTreeItem) {
 		super(
-			folder.name + (folder.id > 0 ? ' (' + folder.id + ')' : ''),
+			folder.name + ((<FolderTreeItem>parent)?.folder?.name === 'Images' && folder.id > 0 ? ' (' + folder.id + ')' : ''),
 			folder.children != null ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None);
 
 		this.folder = folder;
