@@ -44,7 +44,7 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 
 	async showTreeItem(element: vscode.TreeItem) {
 		if (element instanceof FolderTreeItem) {
-			const itemResult = await TiaProjectServerFetchApi.getItem(element.projectTreeItem.file, element.folder.id);
+			const itemResult = await TiaProjectServerFetchApi.getItem(element.projectTreeItem.file, element.folder.id, element.folder.additional);
 
 			switch (itemResult.itemType) {
 				case ItemType.PNG: {
@@ -85,7 +85,7 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 					break;
 				}
 				case ItemType.CScript: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.c');
+					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + (itemResult.name.endsWith('.h') ? '.c' : ''));
 					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
 						vscode.window.showTextDocument(a, { preview: true }).then(e => {
 							e.edit(edit => {
@@ -118,6 +118,19 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 						{ enableScripts: true }
 					);
 					panel.webview.html = itemResult.stringData;
+					break;
+				}
+				case ItemType.CSV: {
+					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.csv');
+					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
+						vscode.window.showTextDocument(a, { preview: true }).then(e => {
+							e.edit(edit => {
+								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
+							});
+						});
+					}, (error: any) => {
+						console.error(error);
+					});
 					break;
 				}
 			}
@@ -173,6 +186,7 @@ abstract class ChildrenTreeItem extends vscode.TreeItem {
 class ProjectTreeItem extends ChildrenTreeItem {
 	name: string;
 	file: string;
+	
 	//@ts-ignore
 	children: FolderTreeItem[];
 
@@ -183,6 +197,7 @@ class ProjectTreeItem extends ChildrenTreeItem {
 
 		this.name = name;
 		this.file = file;
+		
 	}
 }
 

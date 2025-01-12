@@ -14,4 +14,5 @@ export enum ItemType
     VBScript = 90,
     CScript = 91,
     Javascript = 92,
+    CSV = 100,
 }

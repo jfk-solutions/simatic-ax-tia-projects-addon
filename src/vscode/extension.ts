@@ -51,6 +51,8 @@ export async function deactivate() {
 		const tempDir = path.join(os.tmpdir(), extensionId);
 		fs.rmSync(tempDir, { recursive: true });
 	} catch (err) { }
+
+	
 	//let count = storedContext.workspaceState.get<number>(EXTENSION_COUNT_KEY, 0);
 	//count--;
 	//await storedContext.workspaceState.update(EXTENSION_COUNT_KEY, count);

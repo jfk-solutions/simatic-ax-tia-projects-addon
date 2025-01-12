@@ -2,7 +2,7 @@
 	"name": "simatic-ax-tia-projects-addon",
 	"displayName": "Addon for Simatic AX to browse TIA projects",
 	"description": "Addon for Simatic AX to browse TIA projects",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"publisher": "jfk-solutions",
 	"license": "MIT",
 	"pricing": "Trial",
@@ -106,7 +106,7 @@
 		"@typescript-eslint/parser": "^8.19.1",
 		"@vscode/vsce": "^3.2.1",
 		"esbuild": "^0.24.2",
-		"eslint": "^9.17.0",
+		"eslint": "^9.18.0",
 		"typescript": "^5.7.3"
 	}
 }

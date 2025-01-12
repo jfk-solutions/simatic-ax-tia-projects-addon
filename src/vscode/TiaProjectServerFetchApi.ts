@@ -3,7 +3,7 @@ import { ItemType } from "./ItemType.js";
 import * as cp from "child_process";
 import * as vscode from 'vscode';
 
-export type Folder = { name: string, id: number, children: Folder[] };
+export type Folder = { name: string, id: number, children: Folder[], additional?: string };
 export type FolderResult = { folders: Folder[] };
 export type ItemResult = { name: string, itemType: ItemType, data: string, stringData: string };
 
@@ -19,6 +19,7 @@ export class TiaProjectServerFetchApi {
 		const serverPid = context.workspaceState.get<number>(SERVER_RUNNING_KEY, -1);
 
 		let cfg = vscode.workspace.getConfiguration(extensionName);
+		
 		const baseUri = <string>cfg.get("tiaPortalProjectServerUri");
 		TiaProjectServerFetchApi.baseUri = baseUri ?? "http://127.0.0.1:5400";
 
@@ -77,14 +78,14 @@ export class TiaProjectServerFetchApi {
 		return answer;
 	}
 
-	static async getItem(file: string, id: number): Promise<ItemResult> {
+	static async getItem(file: string, id: number, additional?: string): Promise<ItemResult> {
 		const response = await fetch(TiaProjectServerFetchApi.baseUri + "/getItem", {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
 			method: "POST",
-			body: JSON.stringify({ file: file, id: id })
+			body: JSON.stringify({ file: file, id: id, additional: additional })
 		});
 
 		const answer = <ItemResult>await response.json();
