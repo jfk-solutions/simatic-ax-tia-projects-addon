@@ -24,7 +24,7 @@ export class TiaProjectServerFetchApi {
 		TiaProjectServerFetchApi.baseUri = baseUri ?? "http://127.0.0.1:5400";
 
 		//if (serverPid < 0) {
-		//await TiaProjectServerFetchApi.updateBaseuriAndLaunchServer(context, baseUri);
+		await TiaProjectServerFetchApi.updateBaseuriAndLaunchServer(context, baseUri);
 		//}
 	}
 
