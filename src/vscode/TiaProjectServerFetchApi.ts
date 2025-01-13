@@ -2,6 +2,7 @@ import { extensionId, extensionName } from "./ExtensionInformation.js";
 import { ItemType } from "./ItemType.js";
 import * as cp from "child_process";
 import * as vscode from 'vscode';
+import getPort, { portNumbers } from "./PortHelper.js";
 
 export type Folder = { name: string, id: number, children: Folder[], additional?: string };
 export type FolderResult = { folders: Folder[] };
@@ -10,46 +11,35 @@ export type ItemResult = { name: string, itemType: ItemType, data: string, strin
 const extension = vscode.extensions.getExtension(extensionId);
 const extensionPath = extension?.extensionPath + "/binary";
 const extensionDll = extensionPath + "/TiaFileFormatServer.dll";
-const SERVER_RUNNING_KEY = extensionId + '.serverRunning';
 
 export class TiaProjectServerFetchApi {
 	static baseUri: string;
+	static process: cp.ChildProcessWithoutNullStreams | null
 
-	static async runServerIfFirstInstance(context: vscode.ExtensionContext) {
-		const serverPid = context.workspaceState.get<number>(SERVER_RUNNING_KEY, -1);
-
-		let cfg = vscode.workspace.getConfiguration(extensionName);
-		
-		const baseUri = <string>cfg.get("tiaPortalProjectServerUri");
-		TiaProjectServerFetchApi.baseUri = baseUri ?? "http://127.0.0.1:5400";
-
-		//if (serverPid < 0) {
-		await TiaProjectServerFetchApi.updateBaseuriAndLaunchServer(context, baseUri);
-		//}
-	}
-
-	static async updateBaseuriAndLaunchServer(context: vscode.ExtensionContext, baseUri: string) {
-		await TiaProjectServerFetchApi.stopServer(context);
-
-		TiaProjectServerFetchApi.baseUri = baseUri ?? "http://127.0.0.1:5400";
-
+	static async runServer(context: vscode.ExtensionContext) {
+		TiaProjectServerFetchApi.baseUri = "http://127.0.0.1:55400";
 		if (true) { //disable when using c# directly
-			let process = cp.spawn("dotnet", [extensionDll, this.baseUri], {
-				cwd: extensionPath,
-				//shell: true, detached: true
-			});
-			await context.workspaceState.update(SERVER_RUNNING_KEY, process.pid);
+			let port = await getPort({ port: portNumbers(55400, 60000) });
+			TiaProjectServerFetchApi.baseUri = "http://127.0.0.1:" + port;
+			try {
+				TiaProjectServerFetchApi.process = cp.spawn("dotnet", [extensionDll, this.baseUri], {
+					cwd: extensionPath,
+					//shell: true, detached: true
+				});
+			}
+			catch (err) {
+				vscode.window.showErrorMessage('Error: ' + (<any>err)?.cause?.toString());
+			}
 		}
 	}
 
 	static async stopServer(context: vscode.ExtensionContext) {
-		const serverPid = context.workspaceState.get<number>(SERVER_RUNNING_KEY, -1);
-		if (serverPid >= 0) {
+		if (TiaProjectServerFetchApi.process) {
 			try {
-				process.kill(serverPid, 'SIGINT');
+				process.kill(<number>TiaProjectServerFetchApi.process.pid, 'SIGINT');
 			}
 			catch { }
-			await context.workspaceState.update(SERVER_RUNNING_KEY, -1);
+			TiaProjectServerFetchApi.process = null;
 		}
 	}
 
