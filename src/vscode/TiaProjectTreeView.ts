@@ -85,7 +85,7 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 					break;
 				}
 				case ItemType.CScript: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + (itemResult.name.endsWith('.h') ? '.c' : ''));
+					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + (!itemResult.name.endsWith('.h') ? '.c' : ''));
 					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
 						vscode.window.showTextDocument(a, { preview: true }).then(e => {
 							e.edit(edit => {
