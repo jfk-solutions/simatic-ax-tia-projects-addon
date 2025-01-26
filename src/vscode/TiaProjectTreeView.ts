@@ -49,7 +49,7 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 			switch (itemResult.itemType) {
 				case ItemType.PNG: {
 					const tempDir = path.join(os.tmpdir(), extensionId);
-					const tempFilePath = path.join(tempDir, `${(<FolderTreeItem>element).folder.name ?? 'unkown'}_${Date.now()}.png`);
+					const tempFilePath = path.join(tempDir, `${(<FolderTreeItem>element).folder.name?.replaceAll("/","_")?.replaceAll(" ","_") ?? 'unkown'}_${Date.now()}.png`);
 					fs.writeFileSync(tempFilePath, itemResult.data, 'base64');
 					const img = vscode.Uri.file(tempFilePath);
 					await vscode.commands.executeCommand('vscode.openWith', img, 'imagePreview.previewEditor', { preview: true, focus: false });
@@ -57,7 +57,7 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 				}
 				case ItemType.BMP: {
 					const tempDir = path.join(os.tmpdir(), extensionId);
-					const tempFilePath = path.join(tempDir, `${(<FolderTreeItem>element).folder.name ?? 'unkown'}_${Date.now()}.bmp`);
+					const tempFilePath = path.join(tempDir, `${(<FolderTreeItem>element).folder.name?.replaceAll("/","_")?.replaceAll(" ","_")  ?? 'unkown'}_${Date.now()}.bmp`);
 					fs.writeFileSync(tempFilePath, itemResult.data, 'base64');
 					const img = vscode.Uri.file(tempFilePath);
 					await vscode.commands.executeCommand('vscode.openWith', img, 'imagePreview.previewEditor', { preview: true, focus: false });
@@ -65,7 +65,7 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 				}
 				case ItemType.SVG: {
 					const tempDir = path.join(os.tmpdir(), extensionId);
-					const tempFilePath = path.join(tempDir, `${(<FolderTreeItem>element).folder.name ?? 'unkown'}_${Date.now()}.svg`);
+					const tempFilePath = path.join(tempDir, `${(<FolderTreeItem>element).folder.name?.replaceAll("/","_")?.replaceAll(" ","_")  ?? 'unkown'}_${Date.now()}.svg`);
 					fs.writeFileSync(tempFilePath, itemResult.data, 'base64');
 					const img = vscode.Uri.file(tempFilePath);
 					await vscode.commands.executeCommand('vscode.openWith', img, 'imagePreview.previewEditor', { preview: true, focus: false });
@@ -208,7 +208,7 @@ class FolderTreeItem extends ChildrenTreeItem {
 
 	constructor(folder: Folder, projectTreeItem: ProjectTreeItem, parent: ChildrenTreeItem) {
 		super(
-			folder.name + ((<FolderTreeItem>parent)?.folder?.name === 'Images' && folder.id > 0 ? ' (' + folder.id + ')' : ''),
+			folder.name,
 			folder.children != null ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None);
 
 		this.folder = folder;

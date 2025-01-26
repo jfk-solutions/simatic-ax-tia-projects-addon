@@ -10,7 +10,7 @@
         "dependencies": {
           "CsvHelper": "33.0.1",
           "RtfDomParser": "7.0.0",
-          "System.Runtime.Caching": "8.0.0",
+          "System.Runtime.Caching": "9.0.1",
           "TiaFileFormat": "1.0.0"
         },
         "runtime": {
@@ -53,30 +53,53 @@
           }
         }
       },
-      "SharpCompress/0.38.0": {
+      "SharpCompress/0.39.0": {
         "dependencies": {
-          "ZstdSharp.Port": "0.8.1"
+          "System.Buffers": "4.6.0",
+          "ZstdSharp.Port": "0.8.4"
         },
         "runtime": {
           "lib/net8.0/SharpCompress.dll": {
-            "assemblyVersion": "0.38.0.0",
-            "fileVersion": "0.38.0.0"
+            "assemblyVersion": "0.39.0.0",
+            "fileVersion": "0.39.0.0"
           }
         }
       },
-      "System.Configuration.ConfigurationManager/8.0.0": {
+      "System.Buffers/4.6.0": {},
+      "System.Configuration.ConfigurationManager/9.0.1": {
         "dependencies": {
-          "System.Diagnostics.EventLog": "8.0.0",
-          "System.Security.Cryptography.ProtectedData": "8.0.0"
+          "System.Diagnostics.EventLog": "9.0.1",
+          "System.Security.Cryptography.ProtectedData": "9.0.1"
         },
         "runtime": {
           "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.124.61010"
           }
         }
       },
-      "System.Diagnostics.EventLog/8.0.0": {},
+      "System.Diagnostics.EventLog/9.0.1": {
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.124.61010"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.Messages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.124.61010"
+          }
+        }
+      },
       "System.Drawing.Common/7.0.0": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "7.0.0"
@@ -96,30 +119,30 @@
           }
         }
       },
-      "System.Runtime.Caching/8.0.0": {
+      "System.Runtime.Caching/9.0.1": {
         "dependencies": {
-          "System.Configuration.ConfigurationManager": "8.0.0"
+          "System.Configuration.ConfigurationManager": "9.0.1"
         },
         "runtime": {
           "lib/net8.0/System.Runtime.Caching.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "9.0.0.1",
+            "fileVersion": "9.0.124.61010"
           }
         },
         "runtimeTargets": {
           "runtimes/win/lib/net8.0/System.Runtime.Caching.dll": {
             "rid": "win",
             "assetType": "runtime",
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "9.0.0.1",
+            "fileVersion": "9.0.124.61010"
           }
         }
       },
-      "System.Security.Cryptography.ProtectedData/8.0.0": {
+      "System.Security.Cryptography.ProtectedData/9.0.1": {
         "runtime": {
           "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.124.61010"
           }
         }
       },
@@ -132,17 +155,17 @@
           }
         }
       },
-      "ZstdSharp.Port/0.8.1": {
+      "ZstdSharp.Port/0.8.4": {
         "runtime": {
           "lib/net8.0/ZstdSharp.dll": {
-            "assemblyVersion": "0.8.1.0",
-            "fileVersion": "0.8.1.0"
+            "assemblyVersion": "0.8.4.0",
+            "fileVersion": "0.8.4.0"
           }
         }
       },
       "TiaFileFormat/1.0.0": {
         "dependencies": {
-          "SharpCompress": "0.38.0",
+          "SharpCompress": "0.39.0",
           "zlib.net-mutliplatform": "1.0.8"
         },
         "runtime": {
@@ -181,26 +204,33 @@
       "path": "rtfdomparser/7.0.0",
       "hashPath": "rtfdomparser.7.0.0.nupkg.sha512"
     },
-    "SharpCompress/0.38.0": {
+    "SharpCompress/0.39.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8i6KqjAFI3mvya8W8rnQrf5h4vz6ilw4zqk2AzInVqqqZ25TD6fmVeYBnlisjTWwP26eltZc0buSmJ8a3YIGxg==",
-      "path": "sharpcompress/0.38.0",
-      "hashPath": "sharpcompress.0.38.0.nupkg.sha512"
+      "sha512": "sha512-0esqIUDlg68Z7+Weuge4QzEvNtawUO4obTJFL7xuf4DBHMxVRr+wbNgiX9arMrj3kGXQSvLe0zbZG3oxpkwJOA==",
+      "path": "sharpcompress/0.39.0",
+      "hashPath": "sharpcompress.0.39.0.nupkg.sha512"
     },
-    "System.Configuration.ConfigurationManager/8.0.0": {
+    "System.Buffers/4.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JlYi9XVvIREURRUlGMr1F6vOFLk7YSY4p1vHo4kX3tQ0AGrjqlRWHDi66ImHhy6qwXBG3BJ6Y1QlYQ+Qz6Xgww==",
-      "path": "system.configuration.configurationmanager/8.0.0",
-      "hashPath": "system.configuration.configurationmanager.8.0.0.nupkg.sha512"
+      "sha512": "sha512-lN6tZi7Q46zFzAbRYXTIvfXcyvQQgxnY7Xm6C6xQ9784dEL1amjM6S6Iw4ZpsvesAKnRVsM4scrDQaDqSClkjA==",
+      "path": "system.buffers/4.6.0",
+      "hashPath": "system.buffers.4.6.0.nupkg.sha512"
     },
-    "System.Diagnostics.EventLog/8.0.0": {
+    "System.Configuration.ConfigurationManager/9.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fdYxcRjQqTTacKId/2IECojlDSFvp7LP5N78+0z/xH7v/Tuw5ZAxu23Y6PTCRinqyu2ePx+Gn1098NC6jM6d+A==",
-      "path": "system.diagnostics.eventlog/8.0.0",
-      "hashPath": "system.diagnostics.eventlog.8.0.0.nupkg.sha512"
+      "sha512": "sha512-ntDQ+3A7vGq6jnv3KI8nv1Tfgmos9TG863xd/5tmms6LqrIxEze1RLuA3JB/AcpXMUSO70DXzXfPnJD2ZHFX0Q==",
+      "path": "system.configuration.configurationmanager/9.0.1",
+      "hashPath": "system.configuration.configurationmanager.9.0.1.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iVnDpgYJsRaRFnk77kcLA3+913WfWDtnAKrQl9tQ5ahqKANTaJKmQdsuPWWiAPWE9pk1Kj4Pg9JGXWfFYYyakQ==",
+      "path": "system.diagnostics.eventlog/9.0.1",
+      "hashPath": "system.diagnostics.eventlog.9.0.1.nupkg.sha512"
     },
     "System.Drawing.Common/7.0.0": {
       "type": "package",
@@ -209,19 +239,19 @@
       "path": "system.drawing.common/7.0.0",
       "hashPath": "system.drawing.common.7.0.0.nupkg.sha512"
     },
-    "System.Runtime.Caching/8.0.0": {
+    "System.Runtime.Caching/9.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4TmlmvGp4kzZomm7J2HJn6IIx0UUrQyhBDyb5O1XiunZlQImXW+B8b7W/sTPcXhSf9rp5NR5aDtQllwbB5elOQ==",
-      "path": "system.runtime.caching/8.0.0",
-      "hashPath": "system.runtime.caching.8.0.0.nupkg.sha512"
+      "sha512": "sha512-5E4yKPLeruveoh1EZKHl6f6jWXcd/a4tu+1IedG5ZndPPRAeAzFV4+ZagrcQMwz7xTFYOxC0zKM174nPGuTKoA==",
+      "path": "system.runtime.caching/9.0.1",
+      "hashPath": "system.runtime.caching.9.0.1.nupkg.sha512"
     },
-    "System.Security.Cryptography.ProtectedData/8.0.0": {
+    "System.Security.Cryptography.ProtectedData/9.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+TUFINV2q2ifyXauQXRwy4CiBhqvDEDZeVJU7qfxya4aRYOKzVBpN+4acx25VcPB9ywUN6C0n8drWl110PhZEg==",
-      "path": "system.security.cryptography.protecteddata/8.0.0",
-      "hashPath": "system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
+      "sha512": "sha512-u+4PH6GyDjEsWgcpKp1S/DiyxtGvazNPdaPFR6p6/qZr3TW+oZWvwfHO2H2CSpS4KGl2z2CBfU6eB38PsmoxtA==",
+      "path": "system.security.cryptography.protecteddata/9.0.1",
+      "hashPath": "system.security.cryptography.protecteddata.9.0.1.nupkg.sha512"
     },
     "System.Text.Encoding.CodePages/7.0.0": {
       "type": "package",
@@ -237,12 +267,12 @@
       "path": "zlib.net-mutliplatform/1.0.8",
       "hashPath": "zlib.net-mutliplatform.1.0.8.nupkg.sha512"
     },
-    "ZstdSharp.Port/0.8.1": {
+    "ZstdSharp.Port/0.8.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-19tNz33kn2EkyViFXuxfVn338UJaRmkwBphVqP2dVJIYQUQgFrgG5h061mxkRRg1Ax6r+6WOj1FxaFZ5qaWqqg==",
-      "path": "zstdsharp.port/0.8.1",
-      "hashPath": "zstdsharp.port.0.8.1.nupkg.sha512"
+      "sha512": "sha512-eieSXq3kakCUXbgdxkKaRqWS6hF0KBJcqok9LlDCs60GOyrynLvPOcQ0pRw7shdPF7lh/VepJ9cP9n9HHc759g==",
+      "path": "zstdsharp.port/0.8.4",
+      "hashPath": "zstdsharp.port.0.8.4.nupkg.sha512"
     },
     "TiaFileFormat/1.0.0": {
       "type": "project",
