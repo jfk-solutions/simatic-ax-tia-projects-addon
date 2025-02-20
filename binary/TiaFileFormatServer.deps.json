@@ -10,11 +10,19 @@
         "dependencies": {
           "CsvHelper": "33.0.1",
           "RtfDomParser": "7.0.0",
-          "System.Runtime.Caching": "9.0.1",
+          "System.Runtime.Caching": "9.0.2",
           "TiaFileFormat": "1.0.0"
         },
         "runtime": {
           "TiaFileFormatServer.dll": {}
+        }
+      },
+      "BouncyCastle.Cryptography/2.5.1": {
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.5.1.28965"
+          }
         }
       },
       "CsvHelper/33.0.1": {
@@ -66,23 +74,23 @@
         }
       },
       "System.Buffers/4.6.0": {},
-      "System.Configuration.ConfigurationManager/9.0.1": {
+      "System.Configuration.ConfigurationManager/9.0.2": {
         "dependencies": {
-          "System.Diagnostics.EventLog": "9.0.1",
-          "System.Security.Cryptography.ProtectedData": "9.0.1"
+          "System.Diagnostics.EventLog": "9.0.2",
+          "System.Security.Cryptography.ProtectedData": "9.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.124.61010"
+            "fileVersion": "9.0.225.6610"
           }
         }
       },
-      "System.Diagnostics.EventLog/9.0.1": {
+      "System.Diagnostics.EventLog/9.0.2": {
         "runtime": {
           "lib/net8.0/System.Diagnostics.EventLog.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.124.61010"
+            "fileVersion": "9.0.225.6610"
           }
         },
         "runtimeTargets": {
@@ -96,7 +104,7 @@
             "rid": "win",
             "assetType": "runtime",
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.124.61010"
+            "fileVersion": "9.0.225.6610"
           }
         }
       },
@@ -119,30 +127,30 @@
           }
         }
       },
-      "System.Runtime.Caching/9.0.1": {
+      "System.Runtime.Caching/9.0.2": {
         "dependencies": {
-          "System.Configuration.ConfigurationManager": "9.0.1"
+          "System.Configuration.ConfigurationManager": "9.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Runtime.Caching.dll": {
-            "assemblyVersion": "9.0.0.1",
-            "fileVersion": "9.0.124.61010"
+            "assemblyVersion": "9.0.0.2",
+            "fileVersion": "9.0.225.6610"
           }
         },
         "runtimeTargets": {
           "runtimes/win/lib/net8.0/System.Runtime.Caching.dll": {
             "rid": "win",
             "assetType": "runtime",
-            "assemblyVersion": "9.0.0.1",
-            "fileVersion": "9.0.124.61010"
+            "assemblyVersion": "9.0.0.2",
+            "fileVersion": "9.0.225.6610"
           }
         }
       },
-      "System.Security.Cryptography.ProtectedData/9.0.1": {
+      "System.Security.Cryptography.ProtectedData/9.0.2": {
         "runtime": {
           "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.124.61010"
+            "fileVersion": "9.0.225.6610"
           }
         }
       },
@@ -165,12 +173,13 @@
       },
       "TiaFileFormat/1.0.0": {
         "dependencies": {
+          "BouncyCastle.Cryptography": "2.5.1",
           "SharpCompress": "0.39.0",
           "zlib.net-mutliplatform": "1.0.8"
         },
         "runtime": {
           "TiaFileFormat.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -182,6 +191,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BouncyCastle.Cryptography/2.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zy8TMeTP+1FH2NrLaNZtdRbBdq7u5MI+NFZQOBSM69u5RFkciinwzV2eveY6Kjf5MzgsYvvl6kTStsj3JrXqkg==",
+      "path": "bouncycastle.cryptography/2.5.1",
+      "hashPath": "bouncycastle.cryptography.2.5.1.nupkg.sha512"
     },
     "CsvHelper/33.0.1": {
       "type": "package",
@@ -218,19 +234,19 @@
       "path": "system.buffers/4.6.0",
       "hashPath": "system.buffers.4.6.0.nupkg.sha512"
     },
-    "System.Configuration.ConfigurationManager/9.0.1": {
+    "System.Configuration.ConfigurationManager/9.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ntDQ+3A7vGq6jnv3KI8nv1Tfgmos9TG863xd/5tmms6LqrIxEze1RLuA3JB/AcpXMUSO70DXzXfPnJD2ZHFX0Q==",
-      "path": "system.configuration.configurationmanager/9.0.1",
-      "hashPath": "system.configuration.configurationmanager.9.0.1.nupkg.sha512"
+      "sha512": "sha512-pX5GhR4/mfYUbebRdINO6P4B8stIbVWaAWGgWzYO1eC30nUVpCQdzQjKwCPhtLdzjR3d/q+MQ0sRG3B1GLSyqw==",
+      "path": "system.configuration.configurationmanager/9.0.2",
+      "hashPath": "system.configuration.configurationmanager.9.0.2.nupkg.sha512"
     },
-    "System.Diagnostics.EventLog/9.0.1": {
+    "System.Diagnostics.EventLog/9.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iVnDpgYJsRaRFnk77kcLA3+913WfWDtnAKrQl9tQ5ahqKANTaJKmQdsuPWWiAPWE9pk1Kj4Pg9JGXWfFYYyakQ==",
-      "path": "system.diagnostics.eventlog/9.0.1",
-      "hashPath": "system.diagnostics.eventlog.9.0.1.nupkg.sha512"
+      "sha512": "sha512-i+Fe6Fpst/onydFLBGilCr/Eh9OFdlaTU/c3alPp6IbLZXQJOgpIu3l4MOnmsN8fDYq5nAyHSqNIJesc74Yw3Q==",
+      "path": "system.diagnostics.eventlog/9.0.2",
+      "hashPath": "system.diagnostics.eventlog.9.0.2.nupkg.sha512"
     },
     "System.Drawing.Common/7.0.0": {
       "type": "package",
@@ -239,19 +255,19 @@
       "path": "system.drawing.common/7.0.0",
       "hashPath": "system.drawing.common.7.0.0.nupkg.sha512"
     },
-    "System.Runtime.Caching/9.0.1": {
+    "System.Runtime.Caching/9.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5E4yKPLeruveoh1EZKHl6f6jWXcd/a4tu+1IedG5ZndPPRAeAzFV4+ZagrcQMwz7xTFYOxC0zKM174nPGuTKoA==",
-      "path": "system.runtime.caching/9.0.1",
-      "hashPath": "system.runtime.caching.9.0.1.nupkg.sha512"
+      "sha512": "sha512-ePGvHiW5gEcRck8X9qx18yAi91TekaM/64yyGDJBmge/GBkMbIiNRYcDSR3yw8ltE/I58xuzM1cghU8LsMlOyA==",
+      "path": "system.runtime.caching/9.0.2",
+      "hashPath": "system.runtime.caching.9.0.2.nupkg.sha512"
     },
-    "System.Security.Cryptography.ProtectedData/9.0.1": {
+    "System.Security.Cryptography.ProtectedData/9.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-u+4PH6GyDjEsWgcpKp1S/DiyxtGvazNPdaPFR6p6/qZr3TW+oZWvwfHO2H2CSpS4KGl2z2CBfU6eB38PsmoxtA==",
-      "path": "system.security.cryptography.protecteddata/9.0.1",
-      "hashPath": "system.security.cryptography.protecteddata.9.0.1.nupkg.sha512"
+      "sha512": "sha512-+z9JWtU9di45tW/w6zpuJms4SnAAqKY2Usmmxs7MpOhxWoIeR2pKl1vEkaFbEx52ZfrMFcZXsFe+8WERMozzGg==",
+      "path": "system.security.cryptography.protecteddata/9.0.2",
+      "hashPath": "system.security.cryptography.protecteddata.9.0.2.nupkg.sha512"
     },
     "System.Text.Encoding.CodePages/7.0.0": {
       "type": "package",
