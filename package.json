@@ -35,6 +35,13 @@
 					"group": "navigation"
 				}
 			],
+			"view/title": [
+				{
+					"command": "simatic-ax-tia-projects-addon.searchTree",
+					"when": "view == tiaProjectTreeView",
+					"group": "navigation"
+				}
+			],
 			"view/item/context": [
 				{
 					"command": "simatic-ax-tia-projects-addon.closeProject",
@@ -50,6 +57,11 @@
 			{
 				"command": "simatic-ax-tia-projects-addon.closeProject",
 				"title": "Close Project"
+			},
+			{
+				"command": "simatic-ax-tia-projects-addon.searchTree",
+				"title": "Search in TIA Projects",
+				"icon": "search"
 			}
 		],
 		"customEditors": [

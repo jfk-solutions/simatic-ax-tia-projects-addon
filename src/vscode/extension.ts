@@ -21,6 +21,18 @@ export async function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(TiaEditor.register(context, tiaProjectTreeView));
 	context.subscriptions.push(TiaEditor.registerForZip(context, tiaProjectTreeView));
 
+	let disposable = vscode.commands.registerCommand('simatic-ax-tia-projects-addon.searchTree', async () => {
+        const searchQuery = await vscode.window.showInputBox({
+            placeHolder: 'Search in TIA Projects',
+        });
+        if (searchQuery) {
+            // Filter tree based on searchQuery here
+            console.log('Search query:', searchQuery);
+            // Update your tree to show only the matching results
+        }
+    });
+	context.subscriptions.push(disposable);
+
 	storedContext = context;
 
 	TiaProjectServerFetchApi.runServer(context);
