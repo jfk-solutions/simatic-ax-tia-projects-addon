@@ -71,6 +71,71 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 					await vscode.commands.executeCommand('vscode.openWith', img, 'imagePreview.previewEditor', { preview: true, focus: false });
 					break;
 				}
+				case ItemType.XML: {
+					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.xml');
+					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
+						vscode.window.showTextDocument(a, { preview: true }).then(e => {
+							e.edit(edit => {
+								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
+							});
+						});
+					}, (error: any) => {
+						console.error(error);
+					});
+					break;
+				}
+				case ItemType.SclSource: {
+					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.scl');
+					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
+						vscode.window.showTextDocument(a, { preview: true }).then(e => {
+							e.edit(edit => {
+								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
+							});
+						});
+					}, (error: any) => {
+						console.error(error);
+					});
+					break;
+				}
+				case ItemType.StlSource: {
+					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.awl');
+					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
+						vscode.window.showTextDocument(a, { preview: true }).then(e => {
+							e.edit(edit => {
+								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
+							});
+						});
+					}, (error: any) => {
+						console.error(error);
+					});
+					break;
+				}
+				case ItemType.JSON: {
+					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.json');
+					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
+						vscode.window.showTextDocument(a, { preview: true }).then(e => {
+							e.edit(edit => {
+								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
+							});
+						});
+					}, (error: any) => {
+						console.error(error);
+					});
+					break;
+				}
+				case ItemType.YAML: {
+					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.yml');
+					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
+						vscode.window.showTextDocument(a, { preview: true }).then(e => {
+							e.edit(edit => {
+								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
+							});
+						});
+					}, (error: any) => {
+						console.error(error);
+					});
+					break;
+				}
 				case ItemType.Javascript: {
 					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.js');
 					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {

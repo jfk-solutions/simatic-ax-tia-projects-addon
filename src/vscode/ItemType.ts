@@ -15,4 +15,7 @@ export enum ItemType
     CScript = 91,
     Javascript = 92,
     CSV = 100,
+    JSON = 110,
+    XML = 120,
+    YAML = 130,
 }
