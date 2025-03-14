@@ -47,134 +47,27 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 			const itemResult = await TiaProjectServerFetchApi.getItem(element.projectTreeItem.file, element.folder.id, element.folder.additional);
 
 			switch (itemResult.itemType) {
-				case ItemType.PNG: {
-					const tempDir = path.join(os.tmpdir(), extensionId);
-					const tempFilePath = path.join(tempDir, `${(<FolderTreeItem>element).folder.name?.replaceAll("/","_")?.replaceAll(" ","_") ?? 'unkown'}_${Date.now()}.png`);
-					fs.writeFileSync(tempFilePath, itemResult.data, 'base64');
-					const img = vscode.Uri.file(tempFilePath);
-					await vscode.commands.executeCommand('vscode.openWith', img, 'imagePreview.previewEditor', { preview: true, focus: false });
-					break;
-				}
-				case ItemType.BMP: {
-					const tempDir = path.join(os.tmpdir(), extensionId);
-					const tempFilePath = path.join(tempDir, `${(<FolderTreeItem>element).folder.name?.replaceAll("/","_")?.replaceAll(" ","_")  ?? 'unkown'}_${Date.now()}.bmp`);
-					fs.writeFileSync(tempFilePath, itemResult.data, 'base64');
-					const img = vscode.Uri.file(tempFilePath);
-					await vscode.commands.executeCommand('vscode.openWith', img, 'imagePreview.previewEditor', { preview: true, focus: false });
-					break;
-				}
-				case ItemType.SVG: {
-					const tempDir = path.join(os.tmpdir(), extensionId);
-					const tempFilePath = path.join(tempDir, `${(<FolderTreeItem>element).folder.name?.replaceAll("/","_")?.replaceAll(" ","_")  ?? 'unkown'}_${Date.now()}.svg`);
-					fs.writeFileSync(tempFilePath, itemResult.data, 'base64');
-					const img = vscode.Uri.file(tempFilePath);
-					await vscode.commands.executeCommand('vscode.openWith', img, 'imagePreview.previewEditor', { preview: true, focus: false });
-					break;
-				}
-				case ItemType.XML: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.xml');
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, { preview: true }).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
-							});
-						});
-					}, (error: any) => {
-						console.error(error);
-					});
-					break;
-				}
-				case ItemType.SclSource: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.scl');
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, { preview: true }).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
-							});
-						});
-					}, (error: any) => {
-						console.error(error);
-					});
-					break;
-				}
-				case ItemType.StlSource: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.awl');
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, { preview: true }).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
-							});
-						});
-					}, (error: any) => {
-						console.error(error);
-					});
-					break;
-				}
-				case ItemType.JSON: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.json');
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, { preview: true }).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
-							});
-						});
-					}, (error: any) => {
-						console.error(error);
-					});
-					break;
-				}
-				case ItemType.YAML: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.yml');
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, { preview: true }).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
-							});
-						});
-					}, (error: any) => {
-						console.error(error);
-					});
-					break;
-				}
-				case ItemType.Javascript: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.js');
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, { preview: true }).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
-							});
-						});
-					}, (error: any) => {
-						console.error(error);
-					});
-					break;
-				}
-				case ItemType.CScript: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + (!itemResult.name.endsWith('.h') ? '.c' : ''));
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, { preview: true }).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
-							});
-						});
-					}, (error: any) => {
-						console.error(error);
-					});
-					break;
-				}
-				case ItemType.VBScript: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.vb');
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, { preview: true }).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
-							});
-						});
-					}, (error: any) => {
-						console.error(error);
-					});
-					break;
-				}
+				case ItemType.PNG: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.png`, itemResult.data); break;
+				case ItemType.BMP: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.bmp`, itemResult.data); break;
+				case ItemType.SVG: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.svg`, itemResult.data); break;
+				case ItemType.EMF: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.emf`, itemResult.data); break;
+				case ItemType.WMF: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.wmf`, itemResult.data); break;
+				case ItemType.GIF: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.gif`, itemResult.data); break;
+				case ItemType.ICO: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.ico`, itemResult.data); break;
+				case ItemType.JPG: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.jpg`, itemResult.data); break;
+
+				case ItemType.VBScript: this.openTextFile(itemResult.name + '.vb', itemResult.stringData); break;
+				case ItemType.VBScript: this.openTextFile(itemResult.name + '.vb', itemResult.stringData); break;
+				case ItemType.XML: this.openTextFile(itemResult.name + '.xml', itemResult.stringData); break;
+				case ItemType.SclSource: this.openTextFile(itemResult.name + '.scl', itemResult.stringData); break;
+				case ItemType.StlSource: this.openTextFile(itemResult.name + '.awl', itemResult.stringData); break;
+				case ItemType.JSON: this.openTextFile(itemResult.name + '.json', itemResult.stringData); break;
+				case ItemType.YAML: this.openTextFile(itemResult.name + '.yml', itemResult.stringData); break;
+				case ItemType.CScript: this.openTextFile(itemResult.name + (!itemResult.name.endsWith('.h') ? '.c' : ''), itemResult.stringData); break;
+				case ItemType.VBScript: this.openTextFile(itemResult.name + '.vb', itemResult.stringData); break;
+				case ItemType.Javascript: this.openTextFile(itemResult.name + '.js', itemResult.stringData); break;
+				case ItemType.CSV: this.openTextFile(itemResult.name + '.csv', itemResult.stringData); break;
+
 				case ItemType.HTML: {
 					const panel = vscode.window.createWebviewPanel(
 						'tiaScreenPreview',
@@ -185,24 +78,32 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 					panel.webview.html = itemResult.stringData;
 					break;
 				}
-				case ItemType.CSV: {
-					let setting: vscode.Uri = vscode.Uri.parse("untitled:" + itemResult.name + '.csv');
-					vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
-						vscode.window.showTextDocument(a, { preview: true }).then(e => {
-							e.edit(edit => {
-								edit.insert(new vscode.Position(0, 0), itemResult.stringData);
-							});
-						});
-					}, (error: any) => {
-						console.error(error);
-					});
-					break;
-				}
 			}
 
 			//@ts-ignore
 			this.treeView.reveal(undefined, { focus: true });
 		}
+	}
+
+	async openImage(filename: string, dataBase64: string) {
+		const tempDir = path.join(os.tmpdir(), extensionId);
+		const tempFilePath = path.join(tempDir, filename);
+		fs.writeFileSync(tempFilePath, dataBase64, 'base64');
+		const img = vscode.Uri.file(tempFilePath);
+		await vscode.commands.executeCommand('vscode.openWith', img, 'imagePreview.previewEditor', { preview: true, focus: false });
+	}
+
+	openTextFile(filename: string, data: string) {
+		let setting: vscode.Uri = vscode.Uri.parse("untitled:" + filename);
+		vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
+			vscode.window.showTextDocument(a, { preview: true }).then(e => {
+				const edit = new vscode.WorkspaceEdit();
+				edit.insert(setting, new vscode.Position(0, 0), data);
+				vscode.workspace.applyEdit(edit);
+			});
+		}, (error: any) => {
+			console.error(error);
+		});
 	}
 
 	async getChildren(element?: ChildrenTreeItem | undefined): Promise<vscode.TreeItem[]> {
@@ -251,7 +152,7 @@ abstract class ChildrenTreeItem extends vscode.TreeItem {
 class ProjectTreeItem extends ChildrenTreeItem {
 	name: string;
 	file: string;
-	
+
 	//@ts-ignore
 	children: FolderTreeItem[];
 
@@ -262,7 +163,7 @@ class ProjectTreeItem extends ChildrenTreeItem {
 
 		this.name = name;
 		this.file = file;
-		
+
 	}
 }
 
