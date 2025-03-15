@@ -21,17 +21,27 @@ export async function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(TiaEditor.register(context, tiaProjectTreeView));
 	context.subscriptions.push(TiaEditor.registerForZip(context, tiaProjectTreeView));
 
-	let disposable = vscode.commands.registerCommand('simatic-ax-tia-projects-addon.searchTree', async () => {
-        const searchQuery = await vscode.window.showInputBox({
-            placeHolder: 'Search in TIA Projects',
-        });
-        if (searchQuery) {
-            // Filter tree based on searchQuery here
-            console.log('Search query:', searchQuery);
-            // Update your tree to show only the matching results
-        }
-    });
-	context.subscriptions.push(disposable);
+	let searchCommand = vscode.commands.registerCommand('simatic-ax-tia-projects-addon.searchTree', async () => {
+		const searchQuery = await vscode.window.showInputBox({
+			placeHolder: 'Search in TIA Projects',
+		});
+		if (searchQuery) {
+			// Filter tree based on searchQuery here
+			console.log('Search query:', searchQuery);
+			// Update your tree to show only the matching results
+		}
+	});
+	context.subscriptions.push(searchCommand);
+
+	let connectPlcCommand = vscode.commands.registerCommand('simatic-ax-tia-projects-addon.connectPlc', async () => {
+		const ip = await vscode.window.showInputBox({
+			placeHolder: 'IP Address',
+		});
+		if (ip) {
+			await tiaProjectTreeView.connectPlc({ ip: ip, port: 102 });
+		}
+	});
+	context.subscriptions.push(connectPlcCommand);
 
 	storedContext = context;
 

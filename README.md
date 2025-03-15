@@ -1,5 +1,7 @@
 # simatic-ax-addon
-A VSCode Addon to read TIA Portal Project for use in Simatic-AX
+A VSCode Addon to read TIA Portal Project files for use in Simatic-AX.
+
+Also you can Online access a CPU with Firmware >= 2.9 and projected in TIA >= V17
 
 ## addon-page
 
@@ -26,3 +28,6 @@ https://marketplace.visualstudio.com/items?itemName=jfk-solutions.simatic-ax-tia
 ### A VB-script and a WinCC screen
 
 ![sample3](sample3.png)
+
+## icons
+icons from https://iconduck.com/sets/hugeicons-pro

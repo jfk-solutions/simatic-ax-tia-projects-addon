@@ -12,6 +12,8 @@ const extension = vscode.extensions.getExtension(extensionId);
 const extensionPath = extension?.extensionPath + "/binary";
 const extensionDll = extensionPath + "/TiaFileFormatServer.dll";
 
+export type cpuInfo = { ip: string, port: number, password?: string };
+
 export class TiaProjectServerFetchApi {
 	static baseUri: string;
 	static process: cp.ChildProcessWithoutNullStreams | null
@@ -81,4 +83,46 @@ export class TiaProjectServerFetchApi {
 		const answer = <ItemResult>await response.json();
 		return answer;
 	}
+
+	static async onlineGetFolders(cpu: cpuInfo): Promise<FolderResult> {
+		const response = await fetch(TiaProjectServerFetchApi.baseUri + "/online/getFolders", {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: "POST",
+			body: JSON.stringify(cpu)
+		});
+
+		const answer = <FolderResult>await response.json();
+		return answer;
+	}
+
+
+	static async onlineGetItem(cpu: cpuInfo & { id: number }): Promise<ItemResult> {
+		const response = await fetch(TiaProjectServerFetchApi.baseUri + "/online/getItem", {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: "POST",
+			body: JSON.stringify(cpu)
+		});
+
+		const answer = <ItemResult>await response.json();
+		return answer;
+	}
+
+	static async disconnectPlc(cpu: cpuInfo): Promise<void> {
+		const response = await fetch(TiaProjectServerFetchApi.baseUri + "/online/disconnect", {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: "POST",
+			body: JSON.stringify(cpu)
+		});
+	}
+
+
 }

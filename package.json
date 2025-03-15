@@ -2,7 +2,7 @@
 	"name": "simatic-ax-tia-projects-addon",
 	"displayName": "Addon for Simatic AX to browse TIA projects",
 	"description": "Addon for Simatic AX to browse TIA projects",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"publisher": "jfk-solutions",
 	"license": "MIT",
 	"pricing": "Trial",
@@ -37,6 +37,11 @@
 			],
 			"view/title": [
 				{
+					"command": "simatic-ax-tia-projects-addon.connectPlc",
+					"when": "view == tiaProjectTreeView",
+					"group": "navigation"
+				},
+				{
 					"command": "simatic-ax-tia-projects-addon.searchTree",
 					"when": "view == tiaProjectTreeView",
 					"group": "navigation"
@@ -45,7 +50,7 @@
 			"view/item/context": [
 				{
 					"command": "simatic-ax-tia-projects-addon.closeProject",
-					"when": "view == tiaProjectTreeView && viewItem == project"
+					"when": "view == tiaProjectTreeView && viewItem == main"
 				}
 			]
 		},
@@ -61,7 +66,18 @@
 			{
 				"command": "simatic-ax-tia-projects-addon.searchTree",
 				"title": "Search in TIA Projects",
-				"icon": "search"
+				"icon": {
+					"dark": "resources/dark/search.svg",
+					"light": "resources/light/search.svg"
+				}
+			},
+			{
+				"command": "simatic-ax-tia-projects-addon.connectPlc",
+				"title": "Connect PLC",
+				"icon": {
+					"dark": "resources/dark/connect.svg",
+					"light": "resources/light/connect.svg"
+				}
 			}
 		],
 		"customEditors": [

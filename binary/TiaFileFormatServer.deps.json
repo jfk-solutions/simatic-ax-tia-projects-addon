@@ -9,11 +9,13 @@
       "TiaFileFormatServer/1.0.0": {
         "dependencies": {
           "CsvHelper": "33.0.1",
+          "DotNetProjects.S7CommPlusDriver": "1.0.13",
           "Magick.NET-Q16-AnyCPU": "14.5.0",
           "Magick.NET.Core": "14.5.0",
           "RtfDomParser": "7.0.0",
           "System.Runtime.Caching": "9.0.3",
-          "TiaFileFormat": "1.0.0"
+          "TiaFileFormat": "1.0.0",
+          "TiaFileFormat.S7CommPlus": "1.0.0"
         },
         "runtime": {
           "TiaFileFormatServer.dll": {}
@@ -32,6 +34,59 @@
           "lib/net8.0/CsvHelper.dll": {
             "assemblyVersion": "33.0.0.0",
             "fileVersion": "33.0.1.24"
+          }
+        }
+      },
+      "DotNetProjects.S7CommPlusDriver/1.0.13": {
+        "dependencies": {
+          "zlib.net-mutliplatform": "1.0.8"
+        },
+        "runtime": {
+          "lib/net8.0/S7CommPlusDriver.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/osx-arm64/native/libcrypto.3.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-arm64/native/libssl.3.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/libcrypto-3-arm64.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "3.4.0.0"
+          },
+          "runtimes/win-arm64/native/libssl-3-arm64.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "3.4.0.0"
+          },
+          "runtimes/win-x64/native/libcrypto-3-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "3.4.0.0"
+          },
+          "runtimes/win-x64/native/libssl-3-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "3.4.0.0"
+          },
+          "runtimes/win-x86/native/libcrypto-3.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "3.4.0.0"
+          },
+          "runtimes/win-x86/native/libssl-3.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "3.4.0.0"
           }
         }
       },
@@ -246,6 +301,18 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "TiaFileFormat.S7CommPlus/1.0.0": {
+        "dependencies": {
+          "DotNetProjects.S7CommPlusDriver": "1.0.13",
+          "TiaFileFormat": "1.0.0"
+        },
+        "runtime": {
+          "TiaFileFormat.S7CommPlus.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -268,6 +335,13 @@
       "sha512": "sha512-fev4lynklAU2A9GVMLtwarkwaanjSYB4wUqO2nOJX5hnzObORzUqVLe+bDYCUyIIRQM4o5Bsq3CcyJR89iMmEQ==",
       "path": "csvhelper/33.0.1",
       "hashPath": "csvhelper.33.0.1.nupkg.sha512"
+    },
+    "DotNetProjects.S7CommPlusDriver/1.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ajALSgr+/Ms7/V2TBcEMZz+3k66Yn86thZ8c6pvZs3Y8xXgM5gu6HH+ofQr64zgBuqF4Z3au/PYZuIneSZWguQ==",
+      "path": "dotnetprojects.s7commplusdriver/1.0.13",
+      "hashPath": "dotnetprojects.s7commplusdriver.1.0.13.nupkg.sha512"
     },
     "Magick.NET-Q16-AnyCPU/14.5.0": {
       "type": "package",
@@ -368,6 +442,11 @@
       "hashPath": "zstdsharp.port.0.8.4.nupkg.sha512"
     },
     "TiaFileFormat/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TiaFileFormat.S7CommPlus/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

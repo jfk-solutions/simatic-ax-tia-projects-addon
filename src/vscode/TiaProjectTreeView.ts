@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as os from 'os';
 import * as fs from 'fs';
 import * as path from 'path';
-import { Folder, TiaProjectServerFetchApi } from './TiaProjectServerFetchApi.js';
+import { cpuInfo, Folder, ItemResult, TiaProjectServerFetchApi } from './TiaProjectServerFetchApi.js';
 import { ItemType } from './ItemType.js';
 import { extensionId } from './ExtensionInformation.js';
 
@@ -10,7 +10,7 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 
 	private _onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem[] | null> = new vscode.EventEmitter<vscode.TreeItem[] | null>();
 	public onDidChangeTreeData: vscode.Event<vscode.TreeItem[] | null> = this._onDidChangeTreeData.event;
-	projectTree: ProjectTreeItem[] = [];
+	projectTree: MainTreeItem[] = [];
 
 	lastClickTime: number | null = null;
 	lastClickedItem: vscode.TreeItem | null = null;
@@ -29,8 +29,8 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 			element.contextValue = 'file';
 		}
 
-		if (element instanceof ProjectTreeItem) {
-			element.contextValue = 'project';
+		if (element instanceof MainTreeItem) {
+			element.contextValue = 'main';
 		}
 
 		return element;
@@ -44,44 +44,53 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 
 	async showTreeItem(element: vscode.TreeItem) {
 		if (element instanceof FolderTreeItem) {
-			const itemResult = await TiaProjectServerFetchApi.getItem(element.projectTreeItem.file, element.folder.id, element.folder.additional);
 
-			switch (itemResult.itemType) {
-				case ItemType.PNG: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.png`, itemResult.data); break;
-				case ItemType.BMP: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.bmp`, itemResult.data); break;
-				case ItemType.SVG: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.svg`, itemResult.data); break;
-				case ItemType.EMF: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.emf`, itemResult.data); break;
-				case ItemType.WMF: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.wmf`, itemResult.data); break;
-				case ItemType.GIF: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.gif`, itemResult.data); break;
-				case ItemType.ICO: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.ico`, itemResult.data); break;
-				case ItemType.JPG: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.jpg`, itemResult.data); break;
+			let itemResult: ItemResult | null = null;
 
-				case ItemType.VBScript: this.openTextFile(itemResult.name + '.vb', itemResult.stringData); break;
-				case ItemType.VBScript: this.openTextFile(itemResult.name + '.vb', itemResult.stringData); break;
-				case ItemType.XML: this.openTextFile(itemResult.name + '.xml', itemResult.stringData); break;
-				case ItemType.SclSource: this.openTextFile(itemResult.name + '.scl', itemResult.stringData); break;
-				case ItemType.StlSource: this.openTextFile(itemResult.name + '.awl', itemResult.stringData); break;
-				case ItemType.JSON: this.openTextFile(itemResult.name + '.json', itemResult.stringData); break;
-				case ItemType.YAML: this.openTextFile(itemResult.name + '.yml', itemResult.stringData); break;
-				case ItemType.CScript: this.openTextFile(itemResult.name + (!itemResult.name.endsWith('.h') ? '.c' : ''), itemResult.stringData); break;
-				case ItemType.VBScript: this.openTextFile(itemResult.name + '.vb', itemResult.stringData); break;
-				case ItemType.Javascript: this.openTextFile(itemResult.name + '.js', itemResult.stringData); break;
-				case ItemType.CSV: this.openTextFile(itemResult.name + '.csv', itemResult.stringData); break;
-
-				case ItemType.HTML: {
-					const panel = vscode.window.createWebviewPanel(
-						'tiaScreenPreview',
-						`${itemResult.name}`,
-						vscode.ViewColumn.One,
-						{ enableScripts: true }
-					);
-					panel.webview.html = itemResult.stringData;
-					break;
-				}
+			if (element.mainTreeItem instanceof ProjectTreeItem) {
+				itemResult = await TiaProjectServerFetchApi.getItem(element.mainTreeItem.file, element.folder.id, element.folder.additional);
+			} else if (element.mainTreeItem instanceof OnlineTreeItem) {
+				itemResult = await TiaProjectServerFetchApi.onlineGetItem({ ...element.mainTreeItem.cpu, id: element.folder.id });
 			}
 
-			//@ts-ignore
-			this.treeView.reveal(undefined, { focus: true });
+			if (itemResult != null) {
+				switch (itemResult.itemType) {
+					case ItemType.PNG: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.png`, itemResult.data); break;
+					case ItemType.BMP: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.bmp`, itemResult.data); break;
+					case ItemType.SVG: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.svg`, itemResult.data); break;
+					case ItemType.EMF: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.emf`, itemResult.data); break;
+					case ItemType.WMF: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.wmf`, itemResult.data); break;
+					case ItemType.GIF: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.gif`, itemResult.data); break;
+					case ItemType.ICO: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.ico`, itemResult.data); break;
+					case ItemType.JPG: this.openImage(`${(<FolderTreeItem>element).folder.name?.replaceAll("/", "_")?.replaceAll(" ", "_") ?? 'unkown'}_${Date.now()}.jpg`, itemResult.data); break;
+
+					case ItemType.VBScript: this.openTextFile(itemResult.name + '.vb', itemResult.stringData); break;
+					case ItemType.VBScript: this.openTextFile(itemResult.name + '.vb', itemResult.stringData); break;
+					case ItemType.XML: this.openTextFile(itemResult.name + '.xml', itemResult.stringData); break;
+					case ItemType.SclSource: this.openTextFile(itemResult.name + '.scl', itemResult.stringData); break;
+					case ItemType.StlSource: this.openTextFile(itemResult.name + '.awl', itemResult.stringData); break;
+					case ItemType.JSON: this.openTextFile(itemResult.name + '.json', itemResult.stringData); break;
+					case ItemType.YAML: this.openTextFile(itemResult.name + '.yml', itemResult.stringData); break;
+					case ItemType.CScript: this.openTextFile(itemResult.name + (!itemResult.name.endsWith('.h') ? '.c' : ''), itemResult.stringData); break;
+					case ItemType.VBScript: this.openTextFile(itemResult.name + '.vb', itemResult.stringData); break;
+					case ItemType.Javascript: this.openTextFile(itemResult.name + '.js', itemResult.stringData); break;
+					case ItemType.CSV: this.openTextFile(itemResult.name + '.csv', itemResult.stringData); break;
+
+					case ItemType.HTML: {
+						const panel = vscode.window.createWebviewPanel(
+							'tiaScreenPreview',
+							`${itemResult.name}`,
+							vscode.ViewColumn.One,
+							{ enableScripts: true }
+						);
+						panel.webview.html = itemResult.stringData;
+						break;
+					}
+				}
+
+				//@ts-ignore
+				this.treeView.reveal(undefined, { focus: true });
+			}
 		}
 	}
 
@@ -139,17 +148,37 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 		}
 	}
 
-	closeProject(item: ProjectTreeItem) {
-		TiaProjectServerFetchApi.closeProject(item.file);
+	closeProject(item: MainTreeItem) {
+		//TODO, disconnect plc
+		if (item instanceof ProjectTreeItem)
+			TiaProjectServerFetchApi.closeProject(item.file);
+		else if (item instanceof OnlineTreeItem)
+			TiaProjectServerFetchApi.disconnectPlc(item.cpu);
 		this.projectTree.splice(this.projectTree.indexOf(item), 1);
 		this._onDidChangeTreeData.fire(null);
+	}
+
+	async connectPlc(cpu: cpuInfo) {
+		try {
+			const folderResult = await TiaProjectServerFetchApi.onlineGetFolders(cpu);
+			let prj = new OnlineTreeItem(cpu.ip, cpu);
+			prj.children = folderResult.folders.map(x => new FolderTreeItem(x, prj, prj));
+			this.projectTree.push(prj);
+			this._onDidChangeTreeData.fire(null);
+		}
+		catch (err) {
+			vscode.window.showErrorMessage('Error: ' + (<any>err)?.cause?.toString());
+		}
 	}
 }
 
 abstract class ChildrenTreeItem extends vscode.TreeItem {
 	readonly abstract children: vscode.TreeItem[];
 }
-class ProjectTreeItem extends ChildrenTreeItem {
+
+abstract class MainTreeItem extends ChildrenTreeItem {
+}
+class ProjectTreeItem extends MainTreeItem {
 	name: string;
 	file: string;
 
@@ -163,26 +192,42 @@ class ProjectTreeItem extends ChildrenTreeItem {
 
 		this.name = name;
 		this.file = file;
+	}
+}
 
+class OnlineTreeItem extends MainTreeItem {
+	name: string;
+	cpu: cpuInfo;
+
+	//@ts-ignore
+	children: FolderTreeItem[];
+
+	constructor(name: string, cpu: cpuInfo) {
+		super(
+			name,
+			vscode.TreeItemCollapsibleState.Expanded);
+
+		this.name = name;
+		this.cpu = cpu;
 	}
 }
 
 class FolderTreeItem extends ChildrenTreeItem {
 	folder: Folder;
-	projectTreeItem: ProjectTreeItem;
+	mainTreeItem: MainTreeItem;
 	parent: ChildrenTreeItem;
 
-	constructor(folder: Folder, projectTreeItem: ProjectTreeItem, parent: ChildrenTreeItem) {
+	constructor(folder: Folder, mainTreeItem: MainTreeItem, parent: ChildrenTreeItem) {
 		super(
 			folder.name,
 			folder.children != null ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None);
 
 		this.folder = folder;
-		this.projectTreeItem = projectTreeItem;
+		this.mainTreeItem = mainTreeItem;
 		this.parent = parent;
 	}
 
 	get children() {
-		return this.folder.children.map(x => new FolderTreeItem(x, this.projectTreeItem, <any>this));
+		return this.folder.children.map(x => new FolderTreeItem(x, this.mainTreeItem, <any>this));
 	}
 }
