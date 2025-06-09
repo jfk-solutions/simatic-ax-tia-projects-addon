@@ -144,7 +144,10 @@ export class TiaProjectTreeView implements vscode.TreeDataProvider<vscode.TreeIt
 			this._onDidChangeTreeData.fire(null);
 		}
 		catch (err) {
-			vscode.window.showErrorMessage('Error: ' + (<any>err)?.cause?.toString());
+			if ((<any>err)?.cause)
+				vscode.window.showErrorMessage('Error: ' + (<any>err)?.cause?.toString());
+			else
+				vscode.window.showErrorMessage('Error: ' + (<any>err)?.toString());
 		}
 	}
 
