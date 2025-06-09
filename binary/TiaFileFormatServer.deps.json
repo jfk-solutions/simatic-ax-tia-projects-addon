@@ -8,12 +8,12 @@
     ".NETCoreApp,Version=v8.0": {
       "TiaFileFormatServer/1.0.0": {
         "dependencies": {
-          "CsvHelper": "33.0.1",
-          "DotNetProjects.S7CommPlusDriver": "1.0.13",
-          "Magick.NET-Q16-AnyCPU": "14.5.0",
-          "Magick.NET.Core": "14.5.0",
+          "CsvHelper": "33.1.0",
+          "DotNetProjects.S7CommPlusDriver": "1.0.18",
+          "Magick.NET-Q16-AnyCPU": "14.6.0",
+          "Magick.NET.Core": "14.6.0",
           "RtfDomParser": "7.0.0",
-          "System.Runtime.Caching": "9.0.3",
+          "System.Runtime.Caching": "9.0.5",
           "TiaFileFormat": "1.0.0",
           "TiaFileFormat.S7CommPlus": "1.0.0"
         },
@@ -21,23 +21,23 @@
           "TiaFileFormatServer.dll": {}
         }
       },
-      "BouncyCastle.Cryptography/2.5.1": {
+      "BouncyCastle.Cryptography/2.6.1": {
         "runtime": {
           "lib/net6.0/BouncyCastle.Cryptography.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.5.1.28965"
+            "fileVersion": "2.6.1.59591"
           }
         }
       },
-      "CsvHelper/33.0.1": {
+      "CsvHelper/33.1.0": {
         "runtime": {
           "lib/net8.0/CsvHelper.dll": {
             "assemblyVersion": "33.0.0.0",
-            "fileVersion": "33.0.1.24"
+            "fileVersion": "33.1.0.26"
           }
         }
       },
-      "DotNetProjects.S7CommPlusDriver/1.0.13": {
+      "DotNetProjects.S7CommPlusDriver/1.0.18": {
         "dependencies": {
           "zlib.net-mutliplatform": "1.0.8"
         },
@@ -90,14 +90,14 @@
           }
         }
       },
-      "Magick.NET-Q16-AnyCPU/14.5.0": {
+      "Magick.NET-Q16-AnyCPU/14.6.0": {
         "dependencies": {
-          "Magick.NET.Core": "14.5.0"
+          "Magick.NET.Core": "14.6.0"
         },
         "runtime": {
           "lib/net8.0/Magick.NET-Q16-AnyCPU.dll": {
-            "assemblyVersion": "14.5.0.0",
-            "fileVersion": "14.5.0.0"
+            "assemblyVersion": "14.6.0.0",
+            "fileVersion": "14.6.0.0"
           }
         },
         "runtimeTargets": {
@@ -129,25 +129,25 @@
           "runtimes/win-arm64/native/Magick.Native-Q16-arm64.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "7.1.1.44"
+            "fileVersion": "7.1.1.46"
           },
           "runtimes/win-x64/native/Magick.Native-Q16-x64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "7.1.1.44"
+            "fileVersion": "7.1.1.46"
           },
           "runtimes/win-x86/native/Magick.Native-Q16-x86.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "7.1.1.44"
+            "fileVersion": "7.1.1.46"
           }
         }
       },
-      "Magick.NET.Core/14.5.0": {
+      "Magick.NET.Core/14.6.0": {
         "runtime": {
           "lib/net8.0/Magick.NET.Core.dll": {
-            "assemblyVersion": "14.5.0.0",
-            "fileVersion": "14.5.0.0"
+            "assemblyVersion": "14.6.0.0",
+            "fileVersion": "14.6.0.0"
           }
         }
       },
@@ -167,10 +167,21 @@
           }
         }
       },
+      "PacketDotNet/1.4.8": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/PacketDotNet.dll": {
+            "assemblyVersion": "1.4.8.0",
+            "fileVersion": "1.4.8.0"
+          }
+        }
+      },
       "RtfDomParser/7.0.0": {
         "dependencies": {
           "System.Drawing.Common": "7.0.0",
-          "System.Text.Encoding.CodePages": "7.0.0"
+          "System.Text.Encoding.CodePages": "9.0.5"
         },
         "runtime": {
           "lib/net7.0/RtfDomParser.dll": {
@@ -179,36 +190,49 @@
           }
         }
       },
-      "SharpCompress/0.39.0": {
+      "SharpCompress/0.40.0": {
         "dependencies": {
           "System.Buffers": "4.6.0",
-          "ZstdSharp.Port": "0.8.4"
+          "ZstdSharp.Port": "0.8.5"
         },
         "runtime": {
           "lib/net8.0/SharpCompress.dll": {
-            "assemblyVersion": "0.39.0.0",
-            "fileVersion": "0.39.0.0"
+            "assemblyVersion": "0.40.0.0",
+            "fileVersion": "0.40.0.0"
+          }
+        }
+      },
+      "SharpPcap/6.3.1": {
+        "dependencies": {
+          "PacketDotNet": "1.4.8",
+          "System.Memory": "4.6.3",
+          "System.Text.Encoding.CodePages": "9.0.5"
+        },
+        "runtime": {
+          "lib/net8.0/SharpPcap.dll": {
+            "assemblyVersion": "6.3.1.0",
+            "fileVersion": "6.3.1.0"
           }
         }
       },
       "System.Buffers/4.6.0": {},
-      "System.Configuration.ConfigurationManager/9.0.3": {
+      "System.Configuration.ConfigurationManager/9.0.5": {
         "dependencies": {
-          "System.Diagnostics.EventLog": "9.0.3",
-          "System.Security.Cryptography.ProtectedData": "9.0.3"
+          "System.Diagnostics.EventLog": "9.0.5",
+          "System.Security.Cryptography.ProtectedData": "9.0.5"
         },
         "runtime": {
           "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.325.11113"
+            "fileVersion": "9.0.525.21509"
           }
         }
       },
-      "System.Diagnostics.EventLog/9.0.3": {
+      "System.Diagnostics.EventLog/9.0.5": {
         "runtime": {
           "lib/net8.0/System.Diagnostics.EventLog.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.325.11113"
+            "fileVersion": "9.0.525.21509"
           }
         },
         "runtimeTargets": {
@@ -222,7 +246,7 @@
             "rid": "win",
             "assetType": "runtime",
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.325.11113"
+            "fileVersion": "9.0.525.21509"
           }
         }
       },
@@ -245,34 +269,51 @@
           }
         }
       },
-      "System.Runtime.Caching/9.0.3": {
+      "System.Memory/4.6.3": {},
+      "System.Runtime.Caching/9.0.5": {
         "dependencies": {
-          "System.Configuration.ConfigurationManager": "9.0.3"
+          "System.Configuration.ConfigurationManager": "9.0.5"
         },
         "runtime": {
           "lib/net8.0/System.Runtime.Caching.dll": {
-            "assemblyVersion": "9.0.0.3",
-            "fileVersion": "9.0.325.11113"
+            "assemblyVersion": "9.0.0.5",
+            "fileVersion": "9.0.525.21509"
           }
         },
         "runtimeTargets": {
           "runtimes/win/lib/net8.0/System.Runtime.Caching.dll": {
             "rid": "win",
             "assetType": "runtime",
-            "assemblyVersion": "9.0.0.3",
-            "fileVersion": "9.0.325.11113"
+            "assemblyVersion": "9.0.0.5",
+            "fileVersion": "9.0.525.21509"
           }
         }
       },
-      "System.Security.Cryptography.ProtectedData/9.0.3": {
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
+      "System.Security.Cryptography.ProtectedData/9.0.5": {
         "runtime": {
           "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.325.11113"
+            "fileVersion": "9.0.525.21509"
           }
         }
       },
-      "System.Text.Encoding.CodePages/7.0.0": {},
+      "System.Text.Encoding.CodePages/9.0.5": {
+        "runtime": {
+          "lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.525.21509"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.525.21509"
+          }
+        }
+      },
       "zlib.net-mutliplatform/1.0.8": {
         "runtime": {
           "lib/netstandard2.1/zlib.net.dll": {
@@ -281,18 +322,18 @@
           }
         }
       },
-      "ZstdSharp.Port/0.8.4": {
+      "ZstdSharp.Port/0.8.5": {
         "runtime": {
           "lib/net8.0/ZstdSharp.dll": {
-            "assemblyVersion": "0.8.4.0",
-            "fileVersion": "0.8.4.0"
+            "assemblyVersion": "0.8.5.0",
+            "fileVersion": "0.8.5.0"
           }
         }
       },
       "TiaFileFormat/1.0.0": {
         "dependencies": {
-          "BouncyCastle.Cryptography": "2.5.1",
-          "SharpCompress": "0.39.0",
+          "BouncyCastle.Cryptography": "2.6.1",
+          "SharpCompress": "0.40.0",
           "zlib.net-mutliplatform": "1.0.8"
         },
         "runtime": {
@@ -304,7 +345,9 @@
       },
       "TiaFileFormat.S7CommPlus/1.0.0": {
         "dependencies": {
-          "DotNetProjects.S7CommPlusDriver": "1.0.13",
+          "DotNetProjects.S7CommPlusDriver": "1.0.18",
+          "PacketDotNet": "1.4.8",
+          "SharpPcap": "6.3.1",
           "TiaFileFormat": "1.0.0"
         },
         "runtime": {
@@ -322,40 +365,40 @@
       "serviceable": false,
       "sha512": ""
     },
-    "BouncyCastle.Cryptography/2.5.1": {
+    "BouncyCastle.Cryptography/2.6.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zy8TMeTP+1FH2NrLaNZtdRbBdq7u5MI+NFZQOBSM69u5RFkciinwzV2eveY6Kjf5MzgsYvvl6kTStsj3JrXqkg==",
-      "path": "bouncycastle.cryptography/2.5.1",
-      "hashPath": "bouncycastle.cryptography.2.5.1.nupkg.sha512"
+      "sha512": "sha512-vZsG2YILhthgRqO+ZVgRff4ZFKKTl0v7kqaVBLCtRvpREhfBP33pcWrdA3PRYgWuFL1RxiUFvjMUHTdBZlJcoA==",
+      "path": "bouncycastle.cryptography/2.6.1",
+      "hashPath": "bouncycastle.cryptography.2.6.1.nupkg.sha512"
     },
-    "CsvHelper/33.0.1": {
+    "CsvHelper/33.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fev4lynklAU2A9GVMLtwarkwaanjSYB4wUqO2nOJX5hnzObORzUqVLe+bDYCUyIIRQM4o5Bsq3CcyJR89iMmEQ==",
-      "path": "csvhelper/33.0.1",
-      "hashPath": "csvhelper.33.0.1.nupkg.sha512"
+      "sha512": "sha512-kqfTOZGrn7NarNeXgjh86JcpTHUoeQDMB8t9NVa/ZtlSYiV1rxfRnQ49WaJsob4AiGrbK0XDzpyKkBwai4F8eg==",
+      "path": "csvhelper/33.1.0",
+      "hashPath": "csvhelper.33.1.0.nupkg.sha512"
     },
-    "DotNetProjects.S7CommPlusDriver/1.0.13": {
+    "DotNetProjects.S7CommPlusDriver/1.0.18": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ajALSgr+/Ms7/V2TBcEMZz+3k66Yn86thZ8c6pvZs3Y8xXgM5gu6HH+ofQr64zgBuqF4Z3au/PYZuIneSZWguQ==",
-      "path": "dotnetprojects.s7commplusdriver/1.0.13",
-      "hashPath": "dotnetprojects.s7commplusdriver.1.0.13.nupkg.sha512"
+      "sha512": "sha512-9Ur8qRsAfmUtdtGFJscW7PFDLZAZwn+1A5K1x8T9RUEHNiV4UAH7+LcLVeCE2AgAcHdSU4/i4Xdm/38BE+YLIQ==",
+      "path": "dotnetprojects.s7commplusdriver/1.0.18",
+      "hashPath": "dotnetprojects.s7commplusdriver.1.0.18.nupkg.sha512"
     },
-    "Magick.NET-Q16-AnyCPU/14.5.0": {
+    "Magick.NET-Q16-AnyCPU/14.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Txzjhm/CnBqiIHzVzzT6h+DImmO0wncGYa7DsfXs0GecEBW/ew1g2/MFbL1N+7f7Fp6dnE635Rvzf1+gwxfoEg==",
-      "path": "magick.net-q16-anycpu/14.5.0",
-      "hashPath": "magick.net-q16-anycpu.14.5.0.nupkg.sha512"
+      "sha512": "sha512-9WtyCbErWij7MEOYDEPHRUaCdJs0rZ2COeVc7SOlG239UdNoep1QPsRE1UNd2PmncFWJ/G2N7g7c3V2rn3Yy3w==",
+      "path": "magick.net-q16-anycpu/14.6.0",
+      "hashPath": "magick.net-q16-anycpu.14.6.0.nupkg.sha512"
     },
-    "Magick.NET.Core/14.5.0": {
+    "Magick.NET.Core/14.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-X2BeWMkSTQeqIR+dSPhr3Wh0CWvhqpL8vRa7hK8YQRQo+qG97/P+pldmEMStemccSWUe3Y88VhxfjQ5CCp2YtQ==",
-      "path": "magick.net.core/14.5.0",
-      "hashPath": "magick.net.core.14.5.0.nupkg.sha512"
+      "sha512": "sha512-hyXMoLiq6iHooL54iTYzKtiWOAQOiwrwVMeoglGifwYAduAzVfeG+/BxgIz1SaxfczBfQFlcWKTrRU0RNBucUw==",
+      "path": "magick.net.core/14.6.0",
+      "hashPath": "magick.net.core.14.6.0.nupkg.sha512"
     },
     "Microsoft.Win32.SystemEvents/7.0.0": {
       "type": "package",
@@ -364,6 +407,13 @@
       "path": "microsoft.win32.systemevents/7.0.0",
       "hashPath": "microsoft.win32.systemevents.7.0.0.nupkg.sha512"
     },
+    "PacketDotNet/1.4.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-j4C4QaJmaPCk0KXsIdsZqmBteKWj5znXBmfbPpu48rE5SW2xwXKVlRf7C3g7VM9aZqMHIQedApEuC71nNX5PaQ==",
+      "path": "packetdotnet/1.4.8",
+      "hashPath": "packetdotnet.1.4.8.nupkg.sha512"
+    },
     "RtfDomParser/7.0.0": {
       "type": "package",
       "serviceable": true,
@@ -371,12 +421,19 @@
       "path": "rtfdomparser/7.0.0",
       "hashPath": "rtfdomparser.7.0.0.nupkg.sha512"
     },
-    "SharpCompress/0.39.0": {
+    "SharpCompress/0.40.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0esqIUDlg68Z7+Weuge4QzEvNtawUO4obTJFL7xuf4DBHMxVRr+wbNgiX9arMrj3kGXQSvLe0zbZG3oxpkwJOA==",
-      "path": "sharpcompress/0.39.0",
-      "hashPath": "sharpcompress.0.39.0.nupkg.sha512"
+      "sha512": "sha512-yP/aFX1jqGikVF7u2f05VEaWN4aCaKNLxSas82UgA2GGVECxq/BcqZx3STHCJ78qilo1azEOk1XpBglIuGMb7w==",
+      "path": "sharpcompress/0.40.0",
+      "hashPath": "sharpcompress.0.40.0.nupkg.sha512"
+    },
+    "SharpPcap/6.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EWclXz+QdffBRppFR7GDBLyKiAz045RGvu4t4gcMGocVMEq6dRfCnAEx7Ep6qxcPPhH2kz13Y8FqBaHZhsh3Pg==",
+      "path": "sharppcap/6.3.1",
+      "hashPath": "sharppcap.6.3.1.nupkg.sha512"
     },
     "System.Buffers/4.6.0": {
       "type": "package",
@@ -385,19 +442,19 @@
       "path": "system.buffers/4.6.0",
       "hashPath": "system.buffers.4.6.0.nupkg.sha512"
     },
-    "System.Configuration.ConfigurationManager/9.0.3": {
+    "System.Configuration.ConfigurationManager/9.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0kw80ykL/iFhNtFbPpjxIavmCk7/l6MqQwNSNhEoSNuI9C82ZZ251thzQZ/btHut21Y2G9M+amQY1K5bhaAjKg==",
-      "path": "system.configuration.configurationmanager/9.0.3",
-      "hashPath": "system.configuration.configurationmanager.9.0.3.nupkg.sha512"
+      "sha512": "sha512-6JiI15x4eqlHptNG8HqFtQ1NmNTK1hNKuZGECY97deaVpca85XkITo8Me8uCTlKb01egRZGTFA9/kMjewwttPw==",
+      "path": "system.configuration.configurationmanager/9.0.5",
+      "hashPath": "system.configuration.configurationmanager.9.0.5.nupkg.sha512"
     },
-    "System.Diagnostics.EventLog/9.0.3": {
+    "System.Diagnostics.EventLog/9.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0nDJBZ06DVdTG2vvCZ4XjazLVaFawdT0pnji23ISX8I8fEOlRJyzH2I0kWiAbCtFwry2Zir4qE4l/GStLATfFw==",
-      "path": "system.diagnostics.eventlog/9.0.3",
-      "hashPath": "system.diagnostics.eventlog.9.0.3.nupkg.sha512"
+      "sha512": "sha512-nhtTvAgKTD7f6t0bkOb4/hNv0PShb8GHs5Fhn7PvYhwhyWiVyVBvL2vTGH0Hlw5jOZQmWkzQxjY6M/h4tl8M6Q==",
+      "path": "system.diagnostics.eventlog/9.0.5",
+      "hashPath": "system.diagnostics.eventlog.9.0.5.nupkg.sha512"
     },
     "System.Drawing.Common/7.0.0": {
       "type": "package",
@@ -406,26 +463,40 @@
       "path": "system.drawing.common/7.0.0",
       "hashPath": "system.drawing.common.7.0.0.nupkg.sha512"
     },
-    "System.Runtime.Caching/9.0.3": {
+    "System.Memory/4.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mp4QRjXcuakbQJon7ZZOS/dUn61bWJzX7GSNkxngKwpa7Mt2CD/Lb2cX4kWniALEM0vzDpavsybq0XQvlqpgGg==",
-      "path": "system.runtime.caching/9.0.3",
-      "hashPath": "system.runtime.caching.9.0.3.nupkg.sha512"
+      "sha512": "sha512-qdcDOgnFZY40+Q9876JUHnlHu7bosOHX8XISRoH94fwk6hgaeQGSgfZd8srWRZNt5bV9ZW2TljcegDNxsf+96A==",
+      "path": "system.memory/4.6.3",
+      "hashPath": "system.memory.4.6.3.nupkg.sha512"
     },
-    "System.Security.Cryptography.ProtectedData/9.0.3": {
+    "System.Runtime.Caching/9.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4PAwR9l3rhAESfymptisnO2KWpHmiTnKxovnREqmiY4BEakXD2ahQU4/NO0vzEarMw8RGzwpmWoiHwvL/waHfQ==",
-      "path": "system.security.cryptography.protecteddata/9.0.3",
-      "hashPath": "system.security.cryptography.protecteddata.9.0.3.nupkg.sha512"
+      "sha512": "sha512-fYMSRkLBi3V3PYUpGS8Yboo/3/4kR6eRfYTvNjjzQLGo/bN/fXYG8R7ePFPkWp+indB/4g0rDQoGLmPsG5KWBA==",
+      "path": "system.runtime.caching/9.0.5",
+      "hashPath": "system.runtime.caching.9.0.5.nupkg.sha512"
     },
-    "System.Text.Encoding.CodePages/7.0.0": {
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LSyCblMpvOe0N3E+8e0skHcrIhgV2huaNcjUUEa8hRtgEAm36aGkRoC8Jxlb6Ra6GSfF29ftduPNywin8XolzQ==",
-      "path": "system.text.encoding.codepages/7.0.0",
-      "hashPath": "system.text.encoding.codepages.7.0.0.nupkg.sha512"
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/9.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tgS+q4zR08qX4ZA/HPtpNXU2i1EDRBNhNtbTGFdSgYyWcKf5mUtlihbzKcYqArisG1b3x4dk/FIOiWxnHrSENw==",
+      "path": "system.security.cryptography.protecteddata/9.0.5",
+      "hashPath": "system.security.cryptography.protecteddata.9.0.5.nupkg.sha512"
+    },
+    "System.Text.Encoding.CodePages/9.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-P6gqCJcVjdWA50Eai95eYdG4ryrb1xCd770NhQrvj847C7m30CJwQqzKykWoEMvV4qvjUazL/m7UMQdMZTp5xw==",
+      "path": "system.text.encoding.codepages/9.0.5",
+      "hashPath": "system.text.encoding.codepages.9.0.5.nupkg.sha512"
     },
     "zlib.net-mutliplatform/1.0.8": {
       "type": "package",
@@ -434,12 +505,12 @@
       "path": "zlib.net-mutliplatform/1.0.8",
       "hashPath": "zlib.net-mutliplatform.1.0.8.nupkg.sha512"
     },
-    "ZstdSharp.Port/0.8.4": {
+    "ZstdSharp.Port/0.8.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eieSXq3kakCUXbgdxkKaRqWS6hF0KBJcqok9LlDCs60GOyrynLvPOcQ0pRw7shdPF7lh/VepJ9cP9n9HHc759g==",
-      "path": "zstdsharp.port/0.8.4",
-      "hashPath": "zstdsharp.port.0.8.4.nupkg.sha512"
+      "sha512": "sha512-TR4j17WeVSEb3ncgL2NqlXEqcy04I+Kk9CaebNDplUeL8XOgjkZ7fP4Wg4grBdPLIqsV86p2QaXTkZoRMVOsew==",
+      "path": "zstdsharp.port/0.8.5",
+      "hashPath": "zstdsharp.port.0.8.5.nupkg.sha512"
     },
     "TiaFileFormat/1.0.0": {
       "type": "project",
