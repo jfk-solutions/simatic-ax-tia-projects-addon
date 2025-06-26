@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RollForward>LatestMajor</RollForward>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.1.0" />
+    <PackageReference Include="DotNetProjects.DotNetSiemensPLCToolBoxLibrary" Version="4.4.3" />
+    <PackageReference Include="DotNetProjects.S7CommPlusDriver" Version="1.1.0" />
+    <PackageReference Include="jfk-solutions.TiaFileFormat" Version="2025.6.24.2" />
+    <PackageReference Include="jfk-solutions.TiaFileFormat.S7CommPlus" Version="2025.6.24.1" />
+    <PackageReference Include="RtfDomParser" Version="7.0.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="9.0.6" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="14.6.0" />
+    <PackageReference Include="Magick.NET.Core" Version="14.6.0" />
+  </ItemGroup>
+
+    <Target Name="CopyFiles" AfterTargets="Build">
+        <ItemGroup>
+            <BuiltFiles Include="$(OutputPath)**\*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(BuiltFiles)" DestinationFiles="@(BuiltFiles->'$(OutputPath)../../../../../addon/binary/%(RecursiveDir)%(Filename)%(Extension)')" />
+        <Delete Files="$(OutputPath)../../../../../addon/binary/TiaFileFormatServer.exe" />
+        <ItemGroup>
+            <FilesToDelete Include="$(OutputPath)../../../../../addon/binary/*.pdb" />
+        </ItemGroup>
+        <Delete Files="@(FilesToDelete)" />
+    </Target>
+
+</Project>

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TiaFileFormatServer": {
+      "commandName": "Project",
+      "commandLineArgs": "http://127.0.0.1:55400",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
