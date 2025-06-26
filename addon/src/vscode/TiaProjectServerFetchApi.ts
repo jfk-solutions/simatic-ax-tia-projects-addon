@@ -20,7 +20,7 @@ export class TiaProjectServerFetchApi {
 
 	static async runServer(context: vscode.ExtensionContext) {
 		TiaProjectServerFetchApi.baseUri = "http://127.0.0.1:55400";
-		if (true) { //disable when using c# directly
+		if (false) { //disable when using c# directly
 			let port = await getPort({ port: portNumbers(55400, 60000) });
 			TiaProjectServerFetchApi.baseUri = "http://127.0.0.1:" + port;
 			try {

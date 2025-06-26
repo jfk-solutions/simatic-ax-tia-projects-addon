@@ -161,25 +161,25 @@ public class Program
                                     res.StringData = winCCScript.Script;
                                     return res;
                                 }
-                            case CodeBlock codeBlockWrapper:
+                            case BaseBlock baseBlock:
                                 {
-                                    if (codeBlockWrapper.BlockLang == BlockLang.SCL)
+                                    if (baseBlock is CodeBlock codeBlock && codeBlock.BlockLang == BlockLang.SCL)
                                     {
                                         res.ItemType = ItemType.SclSource;
-                                        res.StringData = string.Join("", codeBlockWrapper.ToCodeNetworks());
-                                        res.Name = codeBlockWrapper.Name;
+                                        res.StringData = string.Join("", codeBlock.ToCodeNetworks());
+                                        res.Name = codeBlock.Name;
                                         return res;
                                     }
-                                    else if (codeBlockWrapper.BlockLang == BlockLang.STL)
+                                    else if (baseBlock is CodeBlock codeBlock2 && codeBlock2.BlockLang == BlockLang.STL)
                                     {
                                         res.ItemType = ItemType.StlSource;
-                                        res.StringData = string.Join("### Network ###", codeBlockWrapper.ToCodeNetworks(new CodeBlockToSourceBlockConverter.ConvertOptions() { Mnemonik = Mnemonic.German }));
-                                        res.Name = codeBlockWrapper.Name;
+                                        res.StringData = string.Join("### Network ###", codeBlock2.ToCodeNetworks(new CodeBlockToSourceBlockConverter.ConvertOptions() { Mnemonik = Mnemonic.German }));
+                                        res.Name = codeBlock2.Name;
                                         return res;
                                     }
                                     res.ItemType = ItemType.XML;
-                                    res.StringData = codeBlockWrapper.ToAutomationXml();
-                                    res.Name = codeBlockWrapper.Name;
+                                    res.StringData = baseBlock.ToAutomationXml();
+                                    res.Name = baseBlock.Name;
                                     return res;
                                 }
                             case TiaFileFormat.Wrappers.TextLists.TextList textList:
