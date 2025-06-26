@@ -32,11 +32,42 @@ public class Program
     static ConvertOptions convertOptions;
 
     static System.Runtime.Caching.MemoryCache _projectCache = new System.Runtime.Caching.MemoryCache("TiaProjectCache");
+    static List<NetworkItem> networkItems = new();
+    static ProfinetClientFinder profinetClientFinder;
 
     private static void Main(string[] args)
     {
         highLevelObjectConverterWrapper = new HighLevelObjectConverterWrapper(new ImagesIncludingFromRtfAndWmfAndEmfConverter());
         convertOptions = new ConvertOptions();
+
+        try
+        {
+            profinetClientFinder = new ProfinetClientFinder();
+            profinetClientFinder.ProfinetClientFound = c =>
+            {
+                if (c.StationType != "SIMATIC-PC")
+                {
+                    var nwInfo = new NetworkItem()
+                    {
+                        Source = "Broadcast",
+                        Name = c.StationName,
+                        Type = c.StationType,
+                        IpAddress = c.IPAddress.ToString(),
+                        SubnetMask = c.Subnetmask.ToString(),
+                        UseRouter = c.Gateway.ToString() != "0.0.0.0",
+                        RouterIpAddress = c.Gateway.ToString(),
+                    };
+                    lock (networkItems)
+                    {
+                        networkItems.Add(nwInfo);
+                    }
+                }
+            };
+            profinetClientFinder.Find();
+        }
+        catch(Exception)
+        {
+        }
 
         var builder = WebApplication.CreateBuilder();
         var app = builder.Build();
@@ -222,6 +253,17 @@ public class Program
                 }
             }
             return new ItemResult();
+        });
+
+        app.MapPost("/online/listPlc", async () =>
+        {
+            List<NetworkItem> networkItemsCopy;
+            lock(networkItems)
+            {
+                networkItemsCopy = networkItems.ToList();
+            }
+            var nr = new NetworkResult() { NetworkItems = networkItemsCopy };
+            return nr;
         });
 
         app.MapPost("/online/connect", ([FromBody] OnlineCpuReference cpu) =>

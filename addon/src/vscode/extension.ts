@@ -43,6 +43,16 @@ export async function activate(context: vscode.ExtensionContext) {
 	});
 	context.subscriptions.push(connectPlcCommand);
 
+	let listPlcCommand = vscode.commands.registerCommand('simatic-ax-tia-projects-addon.listPlc', async () => {
+		const nw = await TiaProjectServerFetchApi.listPlc();
+		const options = nw.networkItems.map(x => ({ label: x.name, description: x.type + ' - ' + x.ipAddress, ip: x.ipAddress }));
+		const selected = await vscode.window.showQuickPick(options);
+		if (selected) {
+			await tiaProjectTreeView.connectPlc({ ip: selected.ip, port: 102 });
+		}
+	});
+	context.subscriptions.push(listPlcCommand);
+
 	storedContext = context;
 
 	TiaProjectServerFetchApi.runServer(context);

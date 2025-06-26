@@ -6,6 +6,8 @@ import getPort, { portNumbers } from "./PortHelper.js";
 
 export type Folder = { name: string, id: number, children: Folder[], additional?: string };
 export type FolderResult = { folders: Folder[] };
+export type NetworkItem = { source: string, name: string, type: string, ipAddress: string, subnetMask: string, useRouter: string, routerIpAddress: string };
+export type NetworkResult = { networkItems: NetworkItem[] };
 export type ItemResult = { name: string, itemType: ItemType, data: string, stringData: string };
 
 const extension = vscode.extensions.getExtension(extensionId);
@@ -55,6 +57,21 @@ export class TiaProjectServerFetchApi {
 			body: JSON.stringify({ file: file })
 		});
 	}
+
+	static async listPlc(): Promise<NetworkResult> {
+		const response = await fetch(TiaProjectServerFetchApi.baseUri + "/online/listPlc", {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: "POST",
+			body: ""
+		});
+
+		const answer = <NetworkResult>await response.json();
+		return answer;
+	}
+
 
 	static async getFolders(file: string): Promise<FolderResult> {
 		const response = await fetch(TiaProjectServerFetchApi.baseUri + "/getFolders", {
