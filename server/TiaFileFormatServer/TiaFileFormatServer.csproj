@@ -18,7 +18,7 @@
     <PackageReference Include="CsvHelper" Version="33.1.0" />
     <PackageReference Include="DotNetProjects.DotNetSiemensPLCToolBoxLibrary" Version="4.4.3" />
     <PackageReference Include="DotNetProjects.S7CommPlusDriver" Version="1.1.0" />
-    <PackageReference Include="jfk-solutions.TiaFileFormat" Version="2025.6.24.2" />
+    <PackageReference Include="jfk-solutions.TiaFileFormat" Version="2025.7.2.2" />
     <PackageReference Include="jfk-solutions.TiaFileFormat.S7CommPlus" Version="2025.6.24.1" />
     <PackageReference Include="RtfDomParser" Version="7.0.0" />
     <PackageReference Include="System.Runtime.Caching" Version="9.0.6" />

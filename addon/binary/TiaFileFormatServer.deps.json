@@ -15,7 +15,7 @@
           "Magick.NET.Core": "14.6.0",
           "RtfDomParser": "7.0.0",
           "System.Runtime.Caching": "9.0.6",
-          "jfk-solutions.TiaFileFormat": "2025.6.24.2",
+          "jfk-solutions.TiaFileFormat": "2025.7.2.2",
           "jfk-solutions.TiaFileFormat.S7CommPlus": "2025.6.24.1"
         },
         "runtime": {
@@ -112,7 +112,7 @@
           }
         }
       },
-      "jfk-solutions.TiaFileFormat/2025.6.24.2": {
+      "jfk-solutions.TiaFileFormat/2025.7.2.2": {
         "dependencies": {
           "BouncyCastle.Cryptography": "2.6.1",
           "SharpCompress": "0.40.0",
@@ -120,8 +120,8 @@
         },
         "runtime": {
           "lib/net8.0/TiaFileFormat.dll": {
-            "assemblyVersion": "2025.6.24.2",
-            "fileVersion": "2025.6.24.2"
+            "assemblyVersion": "2025.7.2.2",
+            "fileVersion": "2025.7.2.2"
           }
         }
       },
@@ -130,7 +130,7 @@
           "DotNetProjects.S7CommPlusDriver": "1.1.0",
           "PacketDotNet": "1.4.8",
           "SharpPcap": "6.3.1",
-          "jfk-solutions.TiaFileFormat": "2025.6.24.2"
+          "jfk-solutions.TiaFileFormat": "2025.7.2.2"
         },
         "runtime": {
           "lib/net8.0/TiaFileFormat.S7CommPlus.dll": {
@@ -437,12 +437,12 @@
       "path": "dotnetprojects.s7commplusdriver/1.1.0",
       "hashPath": "dotnetprojects.s7commplusdriver.1.1.0.nupkg.sha512"
     },
-    "jfk-solutions.TiaFileFormat/2025.6.24.2": {
+    "jfk-solutions.TiaFileFormat/2025.7.2.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ToAN4qudzOJF+LJCnOtFc9u7s+XZrku8WTncfwtpR802dV2vK2f9/9vxJXrNCAZL6QTiSfj1kMYLwMhLOhH72A==",
-      "path": "jfk-solutions.tiafileformat/2025.6.24.2",
-      "hashPath": "jfk-solutions.tiafileformat.2025.6.24.2.nupkg.sha512"
+      "sha512": "sha512-pvTB/zj5i/cvgdH71cDeUnQC7plP4odS0jYK5hq9jRTR/Vlj3EQYmv8F6E4nRjzL5W/S4Mk/PsfDVdZPa4FG1w==",
+      "path": "jfk-solutions.tiafileformat/2025.7.2.2",
+      "hashPath": "jfk-solutions.tiafileformat.2025.7.2.2.nupkg.sha512"
     },
     "jfk-solutions.TiaFileFormat.S7CommPlus/2025.6.24.1": {
       "type": "package",
