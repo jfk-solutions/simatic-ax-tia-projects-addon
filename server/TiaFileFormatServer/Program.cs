@@ -22,6 +22,7 @@ using TiaFileFormat.Wrappers.Hmi.Tags;
 using TiaFileFormat.Wrappers.Hmi.WinCCAdvanced;
 using TiaFileFormat.Wrappers.Hmi.WinCCUnified;
 using TiaFileFormat.Wrappers.Images;
+using TiaFileFormat.Wrappers.UserManagement;
 using TiaFileFormatServer.Classes.Api.Request;
 using TiaFileFormatServer.Classes.Api.Response;
 using TiaFileFormatServer.Classes.Helper;
@@ -246,6 +247,17 @@ public class Program
                                     res.ItemType = ItemType.JSON;
                                     res.StringData = JsonSerializer.Serialize(user, new JsonSerializerOptions() { WriteIndented = true });
                                     res.Name = user.Name;
+                                    return res;
+                                }
+                            default:
+                                {
+                                    res.ItemType = ItemType.JSON;
+                                    try
+                                    {
+                                        res.StringData = JsonSerializer.Serialize(highLevelObject, highLevelObject.GetType(), new JsonSerializerOptions() { WriteIndented = true });
+                                    }
+                                    catch (Exception ex) { }
+                                    res.Name = highLevelObject.Name;
                                     return res;
                                 }
                         }
