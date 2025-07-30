@@ -249,6 +249,13 @@ public class Program
                                     res.Name = user.Name;
                                     return res;
                                 }
+                            case TiaFileFormat.Wrappers.Controller.Opc.OpcServerInterface opcServerInterface:
+                                {
+                                    res.ItemType = ItemType.XML;
+                                    res.StringData = opcServerInterface.ServerInterfaceFile;
+                                    res.Name = opcServerInterface.Name;
+                                    return res;
+                                }
                             default:
                                 {
                                     res.ItemType = ItemType.JSON;
