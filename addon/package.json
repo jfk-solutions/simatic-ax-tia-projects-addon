@@ -2,7 +2,7 @@
 	"name": "simatic-ax-tia-projects-addon",
 	"displayName": "Addon for Simatic AX to browse TIA projects",
 	"description": "Addon for Simatic AX to browse TIA projects",
-	"version": "1.10.0",
+	"version": "1.11.0",
 	"publisher": "jfk-solutions",
 	"license": "MIT",
 	"pricing": "Trial",
