@@ -2,7 +2,7 @@
 	"name": "simatic-ax-tia-projects-addon",
 	"displayName": "Addon for Simatic AX to browse TIA projects",
 	"description": "Addon for Simatic AX to browse TIA projects",
-	"version": "1.12.0",
+	"version": "1.13.0",
 	"publisher": "jfk-solutions",
 	"license": "MIT",
 	"pricing": "Trial",
@@ -128,14 +128,14 @@
 		"esbuild": "esbuild ./out/vscode/extension.js --bundle --outfile=out/vscodeWeb/extension.js --external:vscode --format=cjs --platform=node"
 	},
 	"devDependencies": {
-		"@types/node": "^24.10.0",
+		"@types/node": "^25.5.0",
 		"@types/vscode": "^1.77.0",
 		"@types/vscode-webview": "^1.57.5",
-		"@typescript-eslint/eslint-plugin": "^8.46.3",
-		"@typescript-eslint/parser": "^8.46.3",
-		"@vscode/vsce": "^3.6.2",
-		"esbuild": "^0.25.12",
-		"eslint": "^9.39.0",
+		"@typescript-eslint/eslint-plugin": "^8.57.0",
+		"@typescript-eslint/parser": "^8.57.0",
+		"@vscode/vsce": "^3.7.1",
+		"esbuild": "^0.27.4",
+		"eslint": "^10.0.3",
 		"typescript": "^5.9.3"
 	}
 }
